@@ -27,8 +27,8 @@ end
 % Obtain the green channel
 bvp_vec = rgb_vec(:,2);
 % Use filter and normalize data
-NyquistF = 1/2*frame_rate; % Nyquist Frequency Formula = 1/2(delta(t))
-[B,A] = butter(3,[0.7/NyquistF 2.5/NyquistF]);%Butterworth 3rd order filter - chose 0.7 since general rule for low pass filter should be 70% and 2.5 for high pass filter
-bvp_vec = filtfilt(B,A,(double(bvp_vec)-mean(bvp_vec))); % zero phase digital filtering 
+nyquist_freq = 1/2*frame_rate; % Nyquist Frequency Formula = 1/2(delta(t))
+[b,a] = butter(3,[0.7/nyquist_freq 2.5/nyquist_freq]);%Butterworth 3rd order filter - chose 0.7 since general rule for low pass filter should be 70% and 2.5 for high pass filter
+bvp_vec = filtfilt(b,a,(double(bvp_vec)-mean(bvp_vec))); % zero phase digital filtering 
 pred_pr = prpsd(bvp_vec,frame_rate,60,100); 
 end
