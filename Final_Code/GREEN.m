@@ -22,7 +22,7 @@ while hasFrame(input_video) && (input_video.CurrentTime <= video_length)
         roi_skin = roi_frame.*repmat(uint8(Yth.*CBth.*CRth),[1,1,3]);
         rgb_vec(count,:) = squeeze(sum(sum(roi_skin,1),2)./sum(sum(logical(roi_skin),1),2));
     else
-        rgb_vec(count,:) = sum(sum(roi_frame));%if different size regions are used for different frames, the signals should be normalized by the region size, but not necessary for whole frame processing or constant region size
+        rgb_vec(count,:) = sum(sum(roi_frame));
 end
 % Obtain the green channel
 bvp_vec = rgb_vec(:,2);
